@@ -1,0 +1,23 @@
+---
+- name: uninstalling service httpd
+  hosts: all
+  become: yes
+  tasks:
+    - name: Dwnldgn file
+      get_url:
+         url: https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_Linux_amd64.tar.gz
+         dest: /tmp/
+    - name: untar
+      unarchive:
+         src: /tmp/eksctl_Linux_amd64.tar.gz
+         dest: /tmp/
+         remote_src: yes
+    - name: Moving files to bin
+      command: mv /tmp/eksctl /usr/local/bin
+    - name: PWD
+      command: pwd
+    - name: Knowing Version
+      command: eksctl version
+    - name: Python3 install
+      yum:
+        

@@ -1,0 +1,23 @@
+---
+- name: Install Apache
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install httpd using YUM
+      yum:
+        name: httpd
+        update_cache: yes	 
+        state: latest 
+    - name: Copying Index file
+      copy:
+        src: /home/ec2-user/own_ans/index.html
+        dest: /var/www/html
+    - name: Task3 will setup attributes for file
+      file:
+        path: /var/www/html/index.html
+        owner: apache
+        mode: 0644 
+    - name: Task4 will start the httpd 
+      service: 
+        name: httpd 
+        state: started

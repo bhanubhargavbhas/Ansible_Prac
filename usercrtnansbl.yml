@@ -1,0 +1,32 @@
+---
+- name: User Creation
+  hosts: all
+  become: yes
+  tasks:
+    - name: User_Creation
+      user:
+        name: Test_CT
+    - name: Directory Creation
+      file:
+        path: /home/Test_CT
+        state: directory
+    - name: Folder Creation under Test_CT
+      file: 
+        path: /home/Test_CT/Own_Dir
+        state: directory
+    - name: File Creation
+      file:
+        path: /home/Test_CT/Own_Dir/sample.txt
+        state: touch
+    - name: Root Change for the file
+      file:
+        path: /home/Test_CT/Own_Dir/sample.txt
+        owner: root
+        group: Test_CT
+        mode: 0664
+    - name: Adding block in file
+      blockinfile:
+        path: /home/Test_CT/Own_Dir/sample.txt
+        block:
+          this is test sample
+

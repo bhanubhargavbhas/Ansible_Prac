@@ -1,0 +1,59 @@
+    1  ls
+    2  cd own_ans/
+    3  ls
+    4  sudo vi secondpb.yml
+    5  sudo vi /etc/ansible/hosts
+    6  ansible-playbook secondpb.yml --limit testinst
+    7  sudo vi /etc/ansible/hosts
+    8  sudo vi secondpb.yml
+    9  ansible-playbook secondpb.yml --limit testinst
+   10  sudo vi secondpb.yml
+   11  ansible-playbook secondpb.yml --limit testinst
+   12  sudo vi secondpb.yml
+   13  ansible-playbook secondpb.yml --limit testinst
+   14  ansible all --list-hosts
+   15  ssh ec2-user@172.31.84.215
+   16  ansible testinst -m command -a  "ls -lrt /home/Test_CT" --become
+   17  ansible testinst -m command -a  "ls -lrt /home/Test_CT/Own_Dir" --become
+   18  ansible testinst -m command -a  "ls -lrt /home/Test_CT/Own_Dir && cat /home/Test_CT/Own_Dir/sample.txt "  --become
+   19  ansible testinst -m command -a  "ls -lrt /home/Test_CT/Own_Dir  cat /home/Test_CT/Own_Dir/sample.txt "  --become
+   20  ansible testinst -m command -a  " cat /home/Test_CT/Own_Dir/sample.txt "  --become
+   21  ls
+   22  ci eksctl.yml 
+   23  vi eksctl.yml 
+   24  rm -r eksctl.yml 
+   25  ls
+   26  git --version
+   27  sudo yum install git
+   28  ls
+   29  cat firstpb.yml 
+   30  ls
+   31  mv firstpb.yml installapacheansbl.yml
+   32  cat senc
+   33  cat secondpb.yml 
+   34  mv secondpb.yml usercrtnansbl.yml
+   35  ls
+   36  mv firstpbuninst.yml apacheuninstansbl.yml
+   37  ls
+   38  cat usercrtnansbl.yml 
+   39  cat apacheuninstansbl.yml
+   40  cp -r apacheuninstansbl.yml eksctl.yml
+   41  vi eksctl.yml 
+   42  ansible-playbook eksctl.yml --limit testinst
+   43  vi eksctl.yml 
+   44  uname -s
+   45  vi eksctl.yml 
+   46  ansible-playbook eksctl.yml --limit testinst
+   47  ssh ec2-user@172.31.84.215
+   48  vi eksctl.yml 
+   49  ansible-playbook eksctl.yml --limit testinst
+   50  ssh ec2-user@172.31.84.215
+   51  vi eksctl.yml 
+   52  ansible-playbook eksctl.yml --limit testinst
+   53  ssh ec2-user@172.31.84.215
+   54  ansible-playbook eksctl.yml --limit testinst
+   55  vi eksctl.yml 
+   56  ansible-playbook eksctl.yml --limit testinst
+   57  vi eksctl.yml 
+   58  git init
+   59  history >> AllCommands.txt

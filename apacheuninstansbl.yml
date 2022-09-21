@@ -1,0 +1,16 @@
+---
+- name: uninstalling service httpd
+  hosts: all
+  become: yes
+  tasks:
+    - name: Uninstalling httpd
+      yum:
+        name: httpd
+        state: absent
+    - name: Dwnldgn file
+      get_url:
+         url: http://files.cloudthat.training/devops/ansible-essentials/sql_permissions.txt
+         dest: /tmp/
+    - name: Disable SElinux without using command and shell
+      selinux: 
+         state: disabled
