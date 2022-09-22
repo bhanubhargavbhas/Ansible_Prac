@@ -1,0 +1,17 @@
+---
+- name: Sending AWS Credentials to host
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install python3
+      yum: 
+        name: python3
+        state: latest
+    - name: Install boto3 and awscli 
+      command: sudo pip3 install boto boto3 awscli
+    - name: Creayte Directory
+      command: mkdir ~/.aws
+    - name: Copying file AWS config and credentials
+      copy: 
+        src:  /home/ec2-user/Ansible_Prac/awscred/*
+        dest: ~/.aws/
