@@ -1,0 +1,24 @@
+---
+    - name: User_Creation
+      user:
+        name: JAVA_USR
+    - name: Directory Creation
+      file:
+        path: /home/JAVA_USER
+        state: directory
+    - name: File Creation
+      file:
+        path: /home/JAVA_USER/sample.txt
+        state: touch
+    - name:
+      file:
+        path: /home/JAVA_USER/sample.txt
+        owner: root
+        group: JAVA_USR
+        mode: 0664
+    - name: Adding block in file
+      blockinfile:
+        path: /home/JAVA_USER/sample.txt
+        block:
+           JAVA SUCCESFULLY INSTALLED
+

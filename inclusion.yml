@@ -1,0 +1,17 @@
+---
+- name: Install Apache
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install httpd using YUM
+      yum:
+        name: java-11-openjdk-devel
+        update_cache: yes	 
+        state: latest 
+      register: test
+    - name: debugging
+      debug: 
+        msg: "{{ test.rc }}"
+    - name: SecondFile
+      include_tasks: inclusionsprtv.yml 
+      when: test.rc == 0
