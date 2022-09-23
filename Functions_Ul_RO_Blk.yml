@@ -1,0 +1,45 @@
+---
+- hosts: all
+  become: yes
+  #connection: ssh
+  #user: ec2-user
+  tasks:
+  - name: Install Apache Web Server
+    yum:
+       name: httpd
+       state: latest
+  
+  - name: Start {{ db_service }} service
+    service:
+      name: httpd
+      state: started
+  - name: Verify Status of Service
+    shell: systemctl status httpd
+    register: result
+    until: result.stdout.find("active (running)") != -1
+    retries: 5
+    delay: 10
+  - name: Recording uptime on all machines
+    raw: /usr/bin/uptime >> /home/ec2-user/uptime
+    run_once: true
+  - block:
+        - name: Install {{ web_package }} package
+          yum:
+            name: "{{ web_package }}"
+            state: latest
+    rescue:
+        - name: Install {{ db_package }} package
+          yum:
+            name: "{{ db_package }}"
+            state: latest
+    always:
+        - name: Start {{ db_service }} service
+          service:
+            name: "{{ db_service }}"
+            state: started
+  vars:
+    web_package: http
+    db_package: mysql
+    db_service: sshd
+
+

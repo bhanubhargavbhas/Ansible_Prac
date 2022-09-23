@@ -1,0 +1,31 @@
+---
+-  name: perforing Fucntions
+   hosts: all
+   #any_errors_fatal: true
+   become: yes
+   vars_prompt:
+     - name: pckg
+       prompt: Enter any packagename
+       default: user1
+   tasks:
+     - name: Creating multiple users
+       user:
+         name: "{{ item }}"
+         state: present
+       with_items:
+         - user1
+         - user2
+         - user3
+       tags: Usercrtn
+     - name: Installing defined packages
+       yum:
+         name: "{{ pckg }}"
+         state: Updated Versions
+       when: ansible_os_family == "Redhat"
+       tags: Pckginst
+     - name: Create a directory
+       file:
+         src: /test 
+         state: directory
+       tags:
+         -creation
